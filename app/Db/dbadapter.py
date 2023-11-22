@@ -1,4 +1,5 @@
 #db adapter
+from fastapi import HTTPException
 from app.Db.db import db
 
 class dbadapter:
@@ -16,4 +17,4 @@ class dbadapter:
 
             print("Se inserto el usuario con info: " + str(codigo) + " " + str(nombre) + " " + str(nacionalidad) + " " + str(identificacion) + " " + str(fecha_ingreso) + " " + str(fecha_salida) + " " + str(modo_ingreso) + " " + str(empresa))
         except Exception as e:
-            print(e)
+            raise HTTPException( status_code=400, detail=str(e))

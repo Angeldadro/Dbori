@@ -9,10 +9,13 @@ class db:
                                         password="64D6o2sE41x3onuFu7CEQb8SeAJRCtiR"
                                        )
     def ejecutarSentencia(self, sentencia, valores=None):
-        cursor = self.conexión.cursor()
-        if valores:
-            cursor.execute(sentencia, valores)
-        else:
-            cursor.execute(sentencia)
-        self.conexión.commit()
-        return cursor
+        try:
+            cursor = self.conexión.cursor()
+            if valores:
+                cursor.execute(sentencia, valores)
+            else:
+                cursor.execute(sentencia)
+            self.conexión.commit()
+            return cursor
+        except Exception as e:
+            raise e
