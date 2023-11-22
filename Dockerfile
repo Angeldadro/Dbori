@@ -9,5 +9,5 @@ RUN python -m pip install --upgrade pip
 RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
-COPY ./app /app
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+COPY . /app
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
