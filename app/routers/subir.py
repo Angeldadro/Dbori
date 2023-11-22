@@ -21,6 +21,6 @@ async def subir(subida: ModelosOrigin):
             subida.Modo_de_ingreso,
             subida.Empresa)
     except Exception as e:
-        raise HTTPException(status_code=400, detail="Problema al crear el usuario")
+        raise HTTPException(status_code=400, detail=e)
 
     return
