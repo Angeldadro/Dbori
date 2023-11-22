@@ -6,7 +6,7 @@ from app.models.origin import ModelosOrigin
 
 Router = APIRouter()
 
-@Router.post("/")
+@Router.post("/subir")
 async def subir(subida: ModelosOrigin):
     adapter = dbadapter()
     
