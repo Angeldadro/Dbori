@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 import psycopg2
 import os
 class db:
@@ -18,4 +19,4 @@ class db:
             self.conexión.commit()
             return cursor
         except Exception as e:
-            raise e
+            raise HTTPException( status_code=400, detail="Problema con la petición a la base de datos")
