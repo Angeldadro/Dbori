@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers.subir import Router as subir
+from app.routers.leer import Router as leer
 app = FastAPI()
 
 
@@ -17,3 +18,4 @@ app.add_middleware(
 )
 
 app.include_router(subir)
+app.include_router(leer)
