@@ -1,4 +1,5 @@
 # db adapter
+import os
 from fastapi import HTTPException
 import requests
 from app.Db.db import db
