@@ -3,7 +3,7 @@ import os
 from fastapi import HTTPException
 import requests
 from app.Db.db import db
-
+import uuid
 
 class dbadapter:
     def __init__(self):
@@ -11,9 +11,9 @@ class dbadapter:
 
     def crearUsuario(self, codigo, nombre, nacionalidad, identificacion, fecha_ingreso, fecha_salida, modo_ingreso, empresa):
         try:
-            sentencia_sql = 'INSERT INTO public."Origin" ("Código", "Nombre_y_Apellido", "Nacionalidad", "identificación", "Fecha_de_ingreso", "Fecha_de_salida", "Modo_de_ingreso", "Empresa") VALUES (%s, %s, %s, %s, %s, %s, %s, %s);'
+            sentencia_sql = 'INSERT INTO public."Origin" ("Id","Código", "Nombre_y_Apellido", "Nacionalidad", "identificación", "Fecha_de_ingreso", "Fecha_de_salida", "Modo_de_ingreso", "Empresa") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);'
 
-            valores = (codigo, nombre, nacionalidad, identificacion,
+            valores = ( uuid.uuid4(),codigo, nombre, nacionalidad, identificacion,
                        fecha_ingreso, fecha_salida, modo_ingreso, empresa)
 
             self.db.ejecutarSentencia(sentencia_sql, valores)
@@ -34,6 +34,7 @@ class dbadapter:
             sentencia_sql = 'SELECT ("Código", "Nombre_y_Apellido", "Nacionalidad", "identificación", "Fecha_de_ingreso", "Fecha_de_salida", "Modo_de_ingreso", "Empresa") FROM public."Origin";'
             cursor = self.db.ejecutarSentencia(sentencia_sql).fetchall()
             values = [
+                "Id",
                 "codigo",
                 "nombre",
                 "nacionalidad",
@@ -43,22 +44,15 @@ class dbadapter:
                 "modo_ingreso",
                 "empresa"
             ]
-            # [
-            #    [
-            #       "(loco,locoloco,god,god,2023-11-22,2023-11-23,god,god)"
-            #  ],
-            # [
-            #    "(loco2,locoloco,god,god,2023-11-22,2023-11-23,god,god)"
-            # ]
-            # ]
             result = []
             for item in cursor:
                 # Elimina los paréntesis y divide la cadena en valores
                 values = item[0].strip("()").split(",")
                 # Asigna los valores a variables
-                codigo, nombre, nacionalidad, identificacion, fecha_ingreso, fecha_salida, modo_ingreso, empresa = values
+                Id, codigo, nombre, nacionalidad, identificacion, fecha_ingreso, fecha_salida, modo_ingreso, empresa = values
                 # Crea un diccionario con las claves apropiadas
                 diccionario = {
+                    "Id": Id,
                     "codigo": codigo,
                     "nombre": nombre,
                     "nacionalidad": nacionalidad,
