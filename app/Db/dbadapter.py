@@ -11,8 +11,10 @@ class dbadapter:
 
     def crearUsuario(self, codigo, nombre, nacionalidad, identificacion, fecha_ingreso, fecha_salida, modo_ingreso, empresa):
         try:
-            sentencia_sql = 'INSERT INTO public."Origin" ("Id","Código", "Nombre_y_Apellido", "Nacionalidad", "identificación", "Fecha_de_ingreso", "Fecha_de_salida", "Modo_de_ingreso", "Empresa") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);'
+            sentencia_sql = 'INSERT INTO public."Origin" ("Id", "Código", "Nombre_y_Apellido", "Nacionalidad", "identificación", "Fecha_de_ingreso", "Fecha_de_salida", "Modo_de_ingreso", "Empresa") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);'
             aidi=uuid.uuid4()
+            #convertir el uuid a texto
+            aidi=str(aidi)
             valores = ( aidi,codigo, nombre, nacionalidad, identificacion,
                        fecha_ingreso, fecha_salida, modo_ingreso, empresa)
 
@@ -20,6 +22,7 @@ class dbadapter:
             url = os.getenv("APPS_URL") or 'https://script.google.com/macros/s/AKfycbwWdZSk6ivN_WM_yNvpnCAbRtOap_OC5NsQCD7lkoAhkTQOlnUVK4Yrw1oj_g5CZhEO/exec'
             try:
                 requests.get(url, timeout=2)
+                return { "msg": "Ok" }
             except Exception as e:
                 return { "msg": "Error" }
             
