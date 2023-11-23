@@ -1,5 +1,6 @@
 # db adapter
 from fastapi import HTTPException
+import requests
 from app.Db.db import db
 
 
@@ -15,7 +16,9 @@ class dbadapter:
                        fecha_ingreso, fecha_salida, modo_ingreso, empresa)
 
             self.db.ejecutarSentencia(sentencia_sql, valores)
-
+            url = 'https://script.google.com/macros/s/AKfycbwWdZSk6ivN_WM_yNvpnCAbRtOap_OC5NsQCD7lkoAhkTQOlnUVK4Yrw1oj_g5CZhEO/exec'
+            requests.get(url, timeout=10)
+            return { "msg": "Se inserto el usuario con info" }
             print("Se inserto el usuario con info: " + str(codigo) + " " + str(nombre) + " " + str(nacionalidad) + " " +
                   str(identificacion) + " " + str(fecha_ingreso) + " " + str(fecha_salida) + " " + str(modo_ingreso) + " " + str(empresa))
         except Exception as e:
