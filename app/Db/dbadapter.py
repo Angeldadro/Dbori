@@ -21,9 +21,8 @@ class dbadapter:
             try:
                 requests.get(url, timeout=2)
             except Exception as e:
-                raise HTTPException(
-                    status_code=200, detail="Problema con la petición a la appscript")
-            return { "msg": "Se inserto el usuario con info" }
+                return { "msg": "Error" }
+            
             print("Se inserto el usuario con info: " + str(codigo) + " " + str(nombre) + " " + str(nacionalidad) + " " +
                   str(identificacion) + " " + str(fecha_ingreso) + " " + str(fecha_salida) + " " + str(modo_ingreso) + " " + str(empresa))
         except Exception as e:
