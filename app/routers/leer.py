@@ -12,6 +12,7 @@ async def subir():
     
     try:
         returned=adapter.leerUsuarios()
+        print(returned)
         return returned
     except Exception as e:
         raise HTTPException(status_code=400, detail="Problema al crear el usuario")
