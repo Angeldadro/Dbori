@@ -19,7 +19,7 @@ class dbadapter:
             self.db.ejecutarSentencia(sentencia_sql, valores)
             url = os.getenv("APPS_URL") or 'https://script.google.com/macros/s/AKfycbwWdZSk6ivN_WM_yNvpnCAbRtOap_OC5NsQCD7lkoAhkTQOlnUVK4Yrw1oj_g5CZhEO/exec'
             try:
-                requests.get(url, timeout=10)
+                requests.get(url, timeout=2)
             except Exception as e:
                 raise HTTPException(
                     status_code=200, detail="Problema con la petición a la appscript")
