@@ -24,13 +24,7 @@ async def subir(subida: ModelosOrigin):
             subida.Empresa)
         #llegar el evento a appscript a la siguiente url: https://script.google.com/macros/s/AKfycbwWdZSk6ivN_WM_yNvpnCAbRtOap_OC5NsQCD7lkoAhkTQOlnUVK4Yrw1oj_g5CZhEO/exec
         url = 'https://script.google.com/macros/s/AKfycbwWdZSk6ivN_WM_yNvpnCAbRtOap_OC5NsQCD7lkoAhkTQOlnUVK4Yrw1oj_g5CZhEO/exec'
-        response = requests.get(url)
-
-        if response.status_code == 200:
-            print('Evento desencadenado en Google Apps Script')
-        else:
-            print('Error al desencadenar el evento en Google Apps Script')
-
+        requests.get(url)
         return { "msg": "Se inserto el usuario con info" }
     except Exception as e:
         raise HTTPException(status_code=400, detail="Problema al crear el usuario")
