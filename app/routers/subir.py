@@ -1,4 +1,5 @@
 import datetime
+from urllib import request
 from fastapi import APIRouter, HTTPException
 from app.Db.dbadapter import dbadapter
 
@@ -20,6 +21,9 @@ async def subir(subida: ModelosOrigin):
             datetime.datetime.strptime(subida.Fecha_de_salida, "%Y-%m-%d").date(),
             subida.Modo_de_ingreso,
             subida.Empresa)
+        #llegar el evento a appscript a la siguiente url: https://script.google.com/macros/s/AKfycbwWdZSk6ivN_WM_yNvpnCAbRtOap_OC5NsQCD7lkoAhkTQOlnUVK4Yrw1oj_g5CZhEO/exec
+        request.urlopen("https://script.google.com/macros/s/AKfycbwWdZSk6ivN_WM_yNvpnCAbRtOap_OC5NsQCD7lkoAhkTQOlnUVK4Yrw1oj_g5CZhEO/exec")
+
     except Exception as e:
         raise HTTPException(status_code=400, detail="Problema al crear el usuario")
 
