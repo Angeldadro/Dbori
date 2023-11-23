@@ -13,6 +13,7 @@ async def subir(subida: ModelosOrigin):
     adapter = dbadapter()
     
     try:
+        print(subida)
         adapter.crearUsuario(
             subida.Código,
             subida.Nombre_y_Apellido,

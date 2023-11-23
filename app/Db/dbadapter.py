@@ -12,8 +12,8 @@ class dbadapter:
     def crearUsuario(self, codigo, nombre, nacionalidad, identificacion, fecha_ingreso, fecha_salida, modo_ingreso, empresa):
         try:
             sentencia_sql = 'INSERT INTO public."Origin" ("Id","Código", "Nombre_y_Apellido", "Nacionalidad", "identificación", "Fecha_de_ingreso", "Fecha_de_salida", "Modo_de_ingreso", "Empresa") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);'
-
-            valores = ( uuid.uuid4(),codigo, nombre, nacionalidad, identificacion,
+            aidi=uuid.uuid4()
+            valores = ( aidi,codigo, nombre, nacionalidad, identificacion,
                        fecha_ingreso, fecha_salida, modo_ingreso, empresa)
 
             self.db.ejecutarSentencia(sentencia_sql, valores)
