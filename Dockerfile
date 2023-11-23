@@ -3,11 +3,16 @@ EXPOSE 8000
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+
 COPY requirements.txt .
-RUN python -m pip install --upgrade pip
-
 RUN python -m pip install -r requirements.txt
-
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
+
+# Copia los archivos necesarios al contenedor
 COPY . /app
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+# Instala las dependencias de la aplicación
+RUN pip install -r requirements.txt
+
+# Ejecuta Uvicorn para la aplicación FastAPI
+CMD ["python", "run.py"]
