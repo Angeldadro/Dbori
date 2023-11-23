@@ -34,7 +34,7 @@ class dbadapter:
 
     def leerUsuarios(self):
         try:
-            sentencia_sql = 'SELECT ("Código", "Nombre_y_Apellido", "Nacionalidad", "identificación", "Fecha_de_ingreso", "Fecha_de_salida", "Modo_de_ingreso", "Empresa") FROM public."Origin";'
+            sentencia_sql = 'SELECT ("Id", "Código", "Nombre_y_Apellido", "Nacionalidad", "identificación", "Fecha_de_ingreso", "Fecha_de_salida", "Modo_de_ingreso", "Empresa") FROM public."Origin";'
             cursor = self.db.ejecutarSentencia(sentencia_sql).fetchall()
             values = [
                 "Id",
