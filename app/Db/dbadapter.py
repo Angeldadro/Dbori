@@ -26,8 +26,6 @@ class dbadapter:
             except Exception as e:
                 return { "msg": "Error" }
             
-            print("Se inserto el usuario con info: " + str(codigo) + " " + str(nombre) + " " + str(nacionalidad) + " " +
-                  str(identificacion) + " " + str(fecha_ingreso) + " " + str(fecha_salida) + " " + str(modo_ingreso) + " " + str(empresa))
         except Exception as e:
             raise HTTPException(
                 status_code=400, detail="Problema al ejecutar el SQL")
